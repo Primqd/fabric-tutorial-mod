@@ -11,17 +11,19 @@ import net.minecraft.util.Identifier;
 import net.primqd.tutorialmod.TutorialMod;
 
 public class ModItems {
+	private static Item registerItem(String name) {
+        Identifier id = Identifier.of(TutorialMod.MOD_ID, name);
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
+        Item.Settings settings = new Item.Settings().registryKey(key);
+        return Registry.register(Registries.ITEM, key, new Item(settings));
+	}
 
-     public static void registerModItems() {
-         // Initializes all items created in this class.
-         TutorialMod.LOGGER.info("Registering Mod Items for " + TutorialMod.MOD_ID);
-         Identifier id = Identifier.of("tutorial-mod", "black_hole");
-         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
-         Item.Settings settings = new Item.Settings().registryKey(key);
-         Item BLACK_HOLE = Registry.register(Registries.ITEM, key, new Item(settings));
-
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-             entries.add(BLACK_HOLE);
-         });
-     }
+	public static void registerModItems() {
+		// Initializes all items created in this class.
+		TutorialMod.LOGGER.info("Registering Mod Items for " + TutorialMod.MOD_ID);
+        Item BLACK_HOLE = registerItem("black_hole");
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+			entries.add(BLACK_HOLE);
+		});
+	}
 }
