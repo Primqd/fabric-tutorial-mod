@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category" : "misc",
+  "pattern": [
+    "###",
+    "#E#",
+    "###"
+  ],
+  "key": {
+    "#": [
+      "minecraft:sculk"
+    ],
+    "E": [
+      "minecraft:end_crystal"
+    ]
+  },
+  "result": {
+    "id": "tutorial-mod:black_hole",
+    "count": 64
+  }
+}
